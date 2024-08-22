@@ -8,7 +8,7 @@ import platform
 
 def download_content():
     url = url_entry.get()
-    save_path = os.path.join(os.getcwd(), 'downloads')  # İndirme dizini
+    save_path = os.path.join(os.getcwd(), 'Youtube downloads')  # İndirme dizini
     os.makedirs(save_path, exist_ok=True)  # Klasör yoksa oluştur
 
     if not url:
@@ -83,14 +83,14 @@ def open_website(event):
 
 def update_download_list():
     download_listbox.delete(0, tk.END)  # Mevcut listeyi temizle
-    download_dir = os.path.join(os.getcwd(), 'downloads')
+    download_dir = os.path.join(os.getcwd(), 'Youtube downloads')
     if os.path.exists(download_dir):
         for file_name in os.listdir(download_dir):
             download_listbox.insert(tk.END, file_name)
 
 def open_folder(event):
     selected_file = download_listbox.get(download_listbox.curselection())
-    file_path = os.path.join(os.getcwd(), 'downloads', selected_file)
+    file_path = os.path.join(os.getcwd(), 'Youtube downloads', selected_file)
     if os.path.exists(file_path):
         folder_path = os.path.dirname(file_path)
         if platform.system() == "Windows":
@@ -129,7 +129,7 @@ title_label = ttk.Label(app, text="YouTube Downloader", font=("Helvetica", 20, "
 title_label.pack(pady=10)
 
 # URL Label and Entry
-url_label = ttk.Label(app, text="Video URL:")
+url_label = ttk.Label(app, text="Youtube URL:")
 url_label.pack(anchor=tk.W, padx=20, pady=(10, 0))
 
 url_entry = ttk.Entry(app, width=60)
